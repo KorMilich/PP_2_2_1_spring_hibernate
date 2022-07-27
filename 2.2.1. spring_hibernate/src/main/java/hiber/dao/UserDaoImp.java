@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-    @Autowired
+
     private SessionFactory sessionFactory;
 
     @Autowired
@@ -35,16 +35,13 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User getUserByCarModelAndSeries(String model, int series) {
-      try {
-          Query query = sessionFactory.getCurrentSession().createQuery("from User where userCar.model=:model and userCar.series=:series").setParameter("model", model)
-                  .setParameter("series", series);
-          User user = (User) query.getSingleResult();
-          return user;
-      }catch (Exception e){
-          System.out.println("Car not found");
-      }
-      return null;
+
+        Query query = sessionFactory.getCurrentSession().createQuery("from User where userCar.model=:model and userCar.series=:series").setParameter("model", model)
+                .setParameter("series", series);
+        User user = (User) query.getSingleResult();
+        return user;
     }
-
-
 }
+
+
+
